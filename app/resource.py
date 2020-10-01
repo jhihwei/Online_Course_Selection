@@ -1,5 +1,5 @@
 from import_export import resources, fileds
-from .models import Course, Group_record, Students
+from .models import *
 
 class Students(resources.ModelResource):
     class Meta:
@@ -14,5 +14,11 @@ class Course(resources.ModelResource):
 class Group_record(resources.ModelResource):
     class Meta:
         model = Group_record
+        exclude = ('id', )
+        skip_unchanged = True
+
+class Course_record(resources.ModelResource):
+    class Meta:
+        model = Course_record
         exclude = ('id', )
         skip_unchanged = True

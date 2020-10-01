@@ -40,9 +40,6 @@ class Course_record(models.Model):
     course_order = models.SmallIntegerField(verbose_name='選課順序')
     timestamp = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return '' + self.name
-
     class Meta:
         ordering = ['course']
         verbose_name_plural = '選課記錄'
@@ -52,7 +49,8 @@ class Group_record(models.Model):
     student = models.ForeignKey(Students, on_delete=PROTECT, verbose_name="學生")
     timestamp = models.DateTimeField(default=datetime.now, verbose_name="登錄時間")
 
-    def __str__(self) -> str:self.name
+    # def __str__(self) -> str:self.course
 
     class Meta:
         verbose_name_plural = '志願分組'
+        ordering = ('student', )
