@@ -7,6 +7,8 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="{% static 'assets/css/customize.css' %}">
 </head>
 <style>
 </style>
@@ -18,11 +20,11 @@
 
 		<!-- Intro -->
 		<div id="intro">
-			<h1>This is<br />
-				Massively</h1>
-			<p>A free, fully responsive HTML5 + CSS3 site template designed by <a
-					href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a><br />
-				and released for free under the <a href="https://html5up.net/license">Creative Commons license</a>.</p>
+			<h1>輔導處<br />
+				選課系統</h1>
+			<p>Counseling room subject system <a
+					href="https://twitter.com/ajlkn">@System Administrator</a> for <a href="/">Everyone</a><br />
+				make this world <a href="">be better</a>.</p>
 			<ul class="actions">
 				<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
 			</ul>
@@ -36,37 +38,26 @@
 		<!-- Nav -->
 		<nav id="nav">
 			<ul class="links">
-				<li><a>1班</a></li>
-				<li><a>2班</a></li>
-				<li><a>3班</a></li>
-				<li><a>4班</a></li>
-				<li><a>5班</a></li>
-				<li><a>6班</a></li>
-				<li><a>7班</a></li>
-				<li><a>8班</a></li>
-				<li><a>9班</a></li>
-				<li><a>10班</a></li>
-			</ul>
-			<ul class="icons">
-				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-				<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+				{% for i in class_code %}
+				<li><a href="/{{i.class_code}}">{{i.class_code}}班</a></li>
+				{% endfor %}
 			</ul>
 		</nav>
-
 		<!-- Main -->
 		<div id="main">
-
 			<!-- Featured Post -->
 			<article class="post featured">
 				<header class="major">
 					<span class="date">109學年度第一學期</span>
+					<div id = student_autocomp>
+						<label for="autocomplete">輸入座號</label>
+						<input id="input_student_autocomp">
+					</div>
 				</header>
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6 col-6">
-							<ul style="text-align: right;list-style-type: none;">
+							<ul style="text-align: right;list-style-type: none;padding-right:6em;">
 								<li>1</li>
 								<li>2</li>
 								<li>3</li>
@@ -80,17 +71,13 @@
 							</ul>
 						</div>
 						<div id="list" class="col-md-6 col-6" style="text-align: left;">
-							<div class="item" draggable="true">A</div>
-							<div class="item" draggable="true">B</div>
-							<div class="item" draggable="true">C</div>
-							<div class="item" draggable="true">D</div>
-							<div class="item" draggable="true">E</div>
-							<div class="item" draggable="true">F</div>
-							<div class="item" draggable="true">G</div>
-							<div class="item" draggable="true">H</div>
-							<div class="item" draggable="true">I</div>
-							<div class="item" draggable="true">J</div>
+							{%for i in course%}
+							<div class="item" draggable="true">{{i.name_code}}| {{i.description}}</div>
+							{%endfor%}
 						</div>
+						<ul class="actions special">
+							<li><a href="#" class="button large">確定</a></li>
+						</ul>
 					</div>
 				</div>
 			</article>
@@ -217,77 +204,11 @@
 	<script src="{% static 'assets/js/breakpoints.min.js'%}"></script>
 	<script src="{% static 'assets/js/util.js'%}"></script>
 	<script src="{% static 'assets/js/main.js'%}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script>
-		var dragSrcEl = null;
-
-		function handleDragStart(e) {
-			this.style.opacity = '0.4';
-
-			dragSrcEl = this;
-
-			e.dataTransfer.effectAllowed = 'move';
-			e.dataTransfer.setData('text/html', this.innerHTML);
-			e.dataTransfer.setData('text/text', 'id');
-		}
-
-		function handleDragOver(e) {
-			if (e.preventDefault) {
-				e.preventDefault(); // Necessary. Allows us to drop.
-			}
-
-			e.dataTransfer.dropEffect = 'move'; // See the section on the DataTransfer object.
-
-			return false;
-		}
-
-		function handleDragEnter(e) {
-			// this / e.target is the current hover target.
-			this.classList.add('over');
-		}
-
-		function handleDragLeave(e) {
-			this.classList.remove('over'); // this / e.target is previous target element.
-		}
-
-		function handleDrop(e) {
-			// this / e.target is current target element.
-
-			if (e.stopPropagation) {
-				e.stopPropagation(); // stops the browser from redirecting.
-			}
-
-			// Don't do anything if dropping the same column we're dragging.
-			if (dragSrcEl != this) {
-				// Set the source column's HTML to the HTML of the column we dropped on.
-				dragSrcEl.innerHTML = this.innerHTML;
-				this.innerHTML = e.dataTransfer.getData('text/html');
-				console.log(e.dataTransfer.getData('text/text'));
-			}
-
-			return false;
-
-			return false;
-		}
-
-		function handleDragEnd(e) {
-			// this/e.target is the source node.
-
-			[].forEach.call(items, function (item) {
-				item.style.opacity = '1';
-				item.classList.remove('over');
-			});
-		}
-
-		var items = document.querySelectorAll('#list .item');
-		[].forEach.call(items, function (item) {
-			item.addEventListener('dragstart', handleDragStart, false);
-			item.addEventListener('dragenter', handleDragEnter, false);
-			item.addEventListener('dragover', handleDragOver, false);
-			item.addEventListener('dragleave', handleDragLeave, false);
-			item.addEventListener('drop', handleDrop, false);
-			item.addEventListener('dragend', handleDragEnd, false);
-		});
+		var temp_students = {{students}};
 	</script>
+	<script src="{% static 'assets/js/customize.js' %}"></script>
 </body>
 
 </html>
