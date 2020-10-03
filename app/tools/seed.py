@@ -1,4 +1,4 @@
-import sqlite3
+import psycopg2
 from datetime import datetime
 import random
 
@@ -13,7 +13,7 @@ def get_ordering() -> list:
             list.append(r)
     return list
 
-conn = sqlite3.connect('././db.sqlite3')
+conn = psycopg2.connect(database="onlineelective", user="postgres", password="1234", host="127.0.0.1", port="5432")
 c = conn.cursor()
 c.execute('select id from app_Students')
 ids = c.fetchall()
@@ -21,7 +21,7 @@ for id in ids:
     ordering = get_ordering()
     course = 1
     for order in ordering:
-        sql = f"insert into app_Course_record('course_id','course_order', 'student_id', 'timestamp') values({course},{order}, {id[0]}, '{datetime.now}')"
+        sql = f"insert into app_Course_record(course_id,course_order, student_id) values({course},{order}, {id[0]})"
         print(sql)
         c.execute(sql)
         course+=1

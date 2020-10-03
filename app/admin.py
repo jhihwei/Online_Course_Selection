@@ -32,4 +32,6 @@ class Group_record(ImportExportModelAdmin):
 class Course_record(ImportExportModelAdmin):
     def get_description(self, obj):
         return obj.course.description
-    list_display = ('course', 'get_description','student', 'course_order', 'timestamp')
+    get_description.short_description = '描述'
+    list_display = ('course', 'get_description','student', 'course_order', 'allocation', 'timestamp')
+    list_display_links = ('student',)

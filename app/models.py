@@ -38,10 +38,11 @@ class Course_record(models.Model):
     course = models.ForeignKey(Course, on_delete=PROTECT, verbose_name="課程")
     student = models.ForeignKey(Students, on_delete=PROTECT, verbose_name='學生')
     course_order = models.SmallIntegerField(verbose_name='選課順序')
+    allocation = models.BooleanField(verbose_name="已分配", default=False)
     timestamp = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['course']
+        ordering = ('student',)
         verbose_name_plural = '選課記錄'
 
 class Group_record(models.Model):
