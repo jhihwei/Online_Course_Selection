@@ -21,7 +21,7 @@ class Course(models.Model):
 class Students(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=12, verbose_name="姓名")
-    number = models.SmallIntegerField(verbose_name="學號")
+    number = models.IntegerField(verbose_name="學號")
     gender = models.CharField(max_length=8, verbose_name="性別", default='male',
                               choices=(('男', '男'), ('女', '女')))
     class_code = models.SmallIntegerField(verbose_name="班級", help_text='填寫數字代碼')
