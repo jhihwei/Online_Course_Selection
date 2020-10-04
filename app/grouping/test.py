@@ -9,11 +9,11 @@ course_count = Course.objects.all().count()
 course_code = Course.objects.values('id')
 course_code = [row['id'] for row in course_code]
 avg_students_every_course = int(students_count/(class_count*course_count))
-print(class_count, classes_code, course_code)
+print(class_count, classes_code, course_code, avg_students_every_course)
 
 
 def get_volunteer(class_code: int, course_code:int):
-    for i in range(1, 4):
+    for i in range(1, avg_students_every_course+1):
         print(i)
         have_no_allocated = Course_record.objects.filter(
             student__class_code=class_code).filter(allocation=False)
@@ -29,6 +29,6 @@ def get_volunteer(class_code: int, course_code:int):
             Group_record.objects.create(student=students_id, course=course_id)
             print(student)
 
-for class_code in classes_code:
-    for course in course_code:
-        get_volunteer(class_code, course)
+# for class_code in classes_code:
+#     for course in course_code:
+#         get_volunteer(class_code, course)
