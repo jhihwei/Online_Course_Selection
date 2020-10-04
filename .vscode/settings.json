@@ -2,5 +2,6 @@
     "python.linting.enabled": true,
     "python.linting.pylintArgs": [
         "--load-plugins=pylint_django"
-    ]
+    ],
+    "python.pythonPath": "c:\\Users\\WeiWei\\Documents\\django\\OnlineElective\\venv\\Scripts\\python.exe"
 }

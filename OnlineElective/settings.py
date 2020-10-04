@@ -32,6 +32,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 4096
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'import_export',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
 ]
+# DRF
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

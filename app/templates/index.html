@@ -52,6 +52,9 @@
 					<div id = student_autocomp>
 						<label for="autocomplete">輸入座號</label>
 						<input id="input_student_autocomp">
+						<hr>
+						<span id="student" style="visibility:hidden">.</span>
+						<label id="assign_status" style="color:white">已登錄</label>
 					</div>
 				</header>
 				<div class="container">
@@ -70,20 +73,20 @@
 								<li>10</li>
 							</ul>
 						</div>
-						<div id="list" class="col-md-6 col-6" style="text-align: left;">
+						<ul id="list" class="col-md-6 col-6" style="text-align: left;list-style-type: none">
 							{%for i in course%}
-							<div class="item" draggable="true">{{i.name_code}}| {{i.description}}</div>
+							<li class="item" id="{{i.id}}"></span>{{i.name_code}}| {{i.description}}</li>
 							{%endfor%}
-						</div>
+						</ul>
 						<ul class="actions special">
-							<li><a href="#" class="button large">確定</a></li>
+							<li> <input type="submit" value="確定" onclick="submit()"></li>
 						</ul>
 					</div>
 				</div>
 			</article>
 
 			<!-- Posts -->
-			<section class="posts">
+			<!-- <section class="posts">
 				<article>
 					<header>
 						<span class="date">April 24, 2017</span>
@@ -162,12 +165,12 @@
 						<li><a href="#" class="button">Full Story</a></li>
 					</ul>
 				</article>
-			</section>
+			</section> -->
 
 			<!-- Footer -->
 			<footer>
-				<div class="pagination">
-					<!--<a href="#" class="previous">Prev</a>-->
+				<!-- <div class="pagination">
+					<a href="#" class="previous">Prev</a>
 					<a href="#" class="page active">1</a>
 					<a href="#" class="page">2</a>
 					<a href="#" class="page">3</a>
@@ -176,7 +179,7 @@
 					<a href="#" class="page">9</a>
 					<a href="#" class="page">10</a>
 					<a href="#" class="next">Next</a>
-				</div>
+				</div> -->
 			</footer>
 
 		</div>
@@ -190,7 +193,8 @@
 		<div id="copyright">
 			<ul>
 				<li>&copy; Untitled</li>
-				<li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+				<li>Layout Design: <a href="https://html5up.net">HTML5 UP</a></li>
+				<li>System Design: <a href="">Jhih-Wei Jhan,</a></li>
 			</ul>
 		</div>
 
