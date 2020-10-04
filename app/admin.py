@@ -22,9 +22,13 @@ class Group_record(ImportExportModelAdmin):
 
     def get_description(self, obj):
         return obj.course.description
-
     get_description.short_description = '描述'
-    list_display = ('course', 'get_description', 'student')
+
+    def get_class_code(self, obj):
+        return obj.student.class_code
+    get_class_code.short_description = '班級'
+
+    list_display = ('course', 'get_description', 'get_class_code', 'student')
     list_display_links = ('student',)
     readonly_fields=('student', 'timestamp')
 
@@ -33,5 +37,6 @@ class Course_record(ImportExportModelAdmin):
     def get_description(self, obj):
         return obj.course.description
     get_description.short_description = '描述'
-    list_display = ('course', 'get_description','student', 'course_order', 'allocation', 'timestamp')
+
+    list_display = ('course', 'get_description', 'student', 'course_order', 'allocation', 'timestamp')
     list_display_links = ('student',)
