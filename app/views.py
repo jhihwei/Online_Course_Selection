@@ -4,11 +4,24 @@ from rest_framework.generics import GenericAPIView
 from django.db import transaction
 import json
 from django.http.response import HttpResponse
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from .models import *
 from django.core import serializers
 from django.utils.safestring import mark_safe
 from django.db import connection
+from django.contrib import auth
+
+def login(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/')
+    username = request.POST.get('username', '')
+    password = request.POST.get('password', '')
+    user = auth.authenticate(username=username, password=password)
+    if user is not None and user.is_active:
+        auth.login(request, user)
+        return HttpResponseRedirect('/')
+    else:
+        return render(request, 'login.html', locals())
 
 
 def index(request, present_class=201):
@@ -46,7 +59,7 @@ class Course_record_DRF(GenericAPIView):
                     course = Course.objects.get(id=v)
                     student = Students.objects.get(id=student_id)
                     Course_record.objects.create(student=student,
-                    course=course, course_order=i+1)
+                                                 course=course, course_order=i+1)
                 return HttpResponse("ok")
             else:
                 return HttpResponse("assigned")
