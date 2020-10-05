@@ -10,8 +10,6 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="{% static 'assets/css/customize.css' %}">
 </head>
-<style>
-</style>
 
 <body class="is-preload">
 
@@ -22,8 +20,8 @@
 		<div id="intro">
 			<h1>輔導處<br />
 				選課系統</h1>
-			<p>Counseling room subject system <a
-					href="https://twitter.com/ajlkn">@System Administrator</a> for <a href="/">Everyone</a><br />
+			<p>Counseling room subject system <a href="https://twitter.com/ajlkn">@System Administrator</a> for <a
+					href="/">Everyone</a><br />
 				make this world <a href="">be better</a>.</p>
 			<ul class="actions">
 				<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
@@ -39,7 +37,7 @@
 		<nav id="nav">
 			<ul class="links">
 				{% for i in class_code %}
-				<li><a href="/{{i}}">{{i}}班</a></li>
+				<li id="class_code_{{i}}"><a href="/{{i}}">{{i}}班</a></li>
 				{% endfor %}
 			</ul>
 		</nav>
@@ -49,7 +47,7 @@
 			<article class="post featured">
 				<header class="major">
 					<span class="date">109學年度第一學期</span>
-					<div id = student_autocomp>
+					<div id=student_autocomp>
 						<label for="autocomplete">輸入座號</label>
 						<input id="input_student_autocomp">
 						<hr>
@@ -169,17 +167,6 @@
 
 			<!-- Footer -->
 			<footer>
-				<!-- <div class="pagination">
-					<a href="#" class="previous">Prev</a>
-					<a href="#" class="page active">1</a>
-					<a href="#" class="page">2</a>
-					<a href="#" class="page">3</a>
-					<span class="extra">&hellip;</span>
-					<a href="#" class="page">8</a>
-					<a href="#" class="page">9</a>
-					<a href="#" class="page">10</a>
-					<a href="#" class="next">Next</a>
-				</div> -->
 			</footer>
 
 		</div>
@@ -197,10 +184,18 @@
 				<li>System Design: <a href="">Jhih-Wei Jhan,</a></li>
 			</ul>
 		</div>
-
+		<a href="https://wwww.graphery.org/gySVG/" target="_blank"><img
+				src="https://cdn.graphery.online/img/graphery.svg" width="100" height="100"></a>
+		<p style="text-align: center;">Please, click on dog image</p>
+		<div id="example-dog" style="text-align: center;"></div>
+		<p>This example is based lightly on Brad Frarrel's <a href="https://codepen.io/brad482/pen/MGwXyW"
+				target="_blank">Dog SVG Animation</a>.
 	</div>
 
 	<!-- Scripts -->
+	<script>
+		var temp_students = {{students}};
+	</script>
 	<script src="{% static 'assets/js/jquery.min.js'%}"></script>
 	<script src="{% static 'assets/js/jquery.scrollex.min.js'%}"></script>
 	<script src="{% static 'assets/js/jquery.scrolly.min.js'%}"></script>
@@ -209,10 +204,8 @@
 	<script src="{% static 'assets/js/util.js'%}"></script>
 	<script src="{% static 'assets/js/main.js'%}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script>
-		var temp_students = {{students}};
-	</script>
 	<script src="{% static 'assets/js/customize.js' %}"></script>
+
 </body>
 
 </html>

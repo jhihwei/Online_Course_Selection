@@ -25,7 +25,7 @@ SECRET_KEY = 'm*yf*gq$^k)0s@l#^#6bbnk4lfr+_#dx_@f46f9e=guchzqa2y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 4096

@@ -49,3 +49,13 @@ function submit() {
     updateOrder(idsInOrder);
     console.log(idsInOrder)
 }
+// 標記選取班級
+$(function () {
+    setActived();
+});
+
+function setActived() {
+    let path = window.location.pathname.substring(1);
+    $('#class_code_' + path).addClass('active');
+}
+

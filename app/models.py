@@ -47,6 +47,7 @@ class Course_record(models.Model):
 
 class Group_record(models.Model):
     course = models.ForeignKey(Course, on_delete=PROTECT, verbose_name="課程")
+    class_code = models.CharField(max_length=6, verbose_name="班級", default=0)
     student = models.ForeignKey(Students, on_delete=PROTECT, verbose_name="學生")
     timestamp = models.DateTimeField(default=datetime.now, verbose_name="登錄時間")
 
