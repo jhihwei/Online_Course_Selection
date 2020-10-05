@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'OnlineElective.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'onlineelective',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'nhpelomf123',
+        'PASSWORD': 'password123',
         'HOST': 'localhost',
         'PORT': '',
     }
