@@ -42,6 +42,10 @@ class Course_record_admin(ImportExportModelAdmin):
         return obj.student.class_code
     get_class_code.short_description = '班級'
 
-    list_display = ('course', 'get_description', 'get_class_code', 'student', 'course_order', 'allocation', 'timestamp')
+    def get_seat_number(self, obj):
+        return obj.student.seat_number
+    get_seat_number.short_description = '座號'
+
+    list_display = ('course', 'get_description', 'get_class_code', 'get_seat_number', 'student', 'course_order', 'allocation', 'timestamp')
     list_display_links = ('student',)
     search_fields = ['student__class_code']

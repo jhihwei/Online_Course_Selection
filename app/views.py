@@ -29,12 +29,13 @@ def login(request):
         return render(request, 'login.html')
 
 def index(request, present_class=201):
-    if request.user.is_authenticated:
+    # if request.user.is_authenticated:
+    if True:
         cursor = connection.cursor()
         cursor.execute(
             "SELECT DISTINCT class_code FROM app_students order by class_code")
         class_code = [row[0] for row in cursor.fetchall()]
-        students = Students.objects.filter(class_code=present_class)
+        students = Students.objects.filter(class_code=203)
         students = serializers.serialize("json", students)
         course = Course.objects.all()
 
