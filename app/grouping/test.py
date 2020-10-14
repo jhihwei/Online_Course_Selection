@@ -49,10 +49,3 @@ for class_code in classes_code:
     for course in course_code:
         get_volunteer(class_code=class_code, course_code=course,
                       student_count=1)
-
-# have_no_allocated = Course_record.objects.filter(
-#     student__class_code=201).filter(allocation=False)
-# have_priority = have_no_allocated.order_by('course_order', 'student')
-# have_students = have_priority.distinct('student')
-# for student in have_students:
-#     print(student)
