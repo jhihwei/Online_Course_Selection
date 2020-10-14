@@ -15,6 +15,7 @@ class Course_admin(ImportExportModelAdmin):
 class Students_admin(ImportExportModelAdmin):
     list_display = ('class_code', 'number', 'seat_number', 'name', 'gender')
     list_display_links = ('name',)
+    search_fields = ['class_code']
 
 
 @admin.register(Group_record)
@@ -28,9 +29,14 @@ class Group_record_admin(ImportExportModelAdmin):
         return obj.student.class_code
     get_class_code.short_description = '班級'
 
-    list_display = ('course', 'get_description', 'get_class_code', 'student')
+    # def get_course_order(self, obj):
+    #     return obj.Course_record.course_order
+    # get_course_order.short_description="志願"
+
+    list_display = ('course', 'get_description', 'get_class_code', 'student','course_order')
     list_display_links = ('student',)
-    readonly_fields=('student', 'timestamp')
+    readonly_fields=('student', 'timestamp', )
+    search_fields=('course__name','student__class_code')
 
 @admin.register(Course_record)
 class Course_record_admin(ImportExportModelAdmin):
