@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+依班級.xlsx
+依課程.xlsx
